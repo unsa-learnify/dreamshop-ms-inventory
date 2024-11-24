@@ -9,33 +9,35 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.unsa.learnify.dreamshop</groupId>
-	<artifactId>products</artifactId>
+	<artifactId>warehouses</artifactId>
 	<version>1.0.0</version>
-	<name>products</name>
-	<description>DreamShop SaaS - Products Microservice</description>
-	<url/>
+	<name>Warehouse Microservice</name>
+	<description>DreamShop - Warehouse Microservice</description>
+	<url>https://github.com/unsa-learnify/dreamshop-ms-warehouses</url>
 	<licenses>
 		<license>
-			<name></name>
-			<url></url>
-			<distribution></distribution>
-			<comments></comments>
+			<name>MIT License</name>
+			<comments>Allows use, modification, distribution, and sublicensing of the project with few restrictions. The MIT License is commonly used for open-source projects and provides flexibility while ensuring attribution to the original authors.</comments>
+			<distribution>repo</distribution>
+			<url>https://opensource.org/licenses/MIT</url>
 		</license>
 	</licenses>
 	<developers>
 		<developer>
 			<name>Angel Hincho</name>
 			<email>ahincho@unsa.edu.pe</email>
+			<organization>Universidad Nacional de San Agustin</organization>
+			<url>https://github.com/ahincho</url>
 			<roles>
 				<role>Backend Developer</role>
 			</roles>
 		</developer>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
+		<connection>scm:git:https://github.com/unsa-learnify/dreamshop-ms-warehouses</connection>
+		<developerConnection>scm:git:ssh://git@github.com:unsa-learnify/dreamshop-ms-warehouses.git</developerConnection>
+		<url>https://github.com/unsa-learnify/dreamshop-ms-warehouses</url>
+		<tag>main</tag>
 	</scm>
 	<properties>
 		<java.version>21</java.version>
