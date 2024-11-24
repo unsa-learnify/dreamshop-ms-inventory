@@ -1,0 +1,10 @@
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    description TEXT,
+    unit_price NUMERIC(10, 2) NOT NULL,
+    currency VARCHAR(3) NOT NULL CHECK (currency IN ('USD', 'EUR', 'PEN')),
+    quantity INTEGER NOT NULL DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
