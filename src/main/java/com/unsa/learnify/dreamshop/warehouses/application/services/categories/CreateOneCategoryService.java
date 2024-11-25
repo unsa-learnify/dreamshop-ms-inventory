@@ -7,8 +7,6 @@ import com.unsa.learnify.dreamshop.warehouses.domain.models.Category;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CreateOneCategoryService implements CreateOneCategoryServicePort {
     private final CategoryPersistencePort categoryPersistencePort;
@@ -17,8 +15,7 @@ public class CreateOneCategoryService implements CreateOneCategoryServicePort {
     }
     @Override
     public Category execute(Category category) throws CategoryDuplicatedException {
-        Optional<Category> existingCategoryByName = this.categoryPersistencePort.findOneCategoryByName(category.getName());
-        if (existingCategoryByName.isPresent()) {
+        if (this.categoryPersistencePort.existsOneCategoryByName(category.getName())) {
             throw new CategoryDuplicatedException("Category with name '" + category.getName() + "' already exists");
         }
         return categoryPersistencePort.createOneCategory(category);
