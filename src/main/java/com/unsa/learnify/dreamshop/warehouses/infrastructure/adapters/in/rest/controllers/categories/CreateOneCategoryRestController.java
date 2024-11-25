@@ -7,6 +7,12 @@ import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dt
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.CategoryRestMapper;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -25,6 +31,28 @@ public class CreateOneCategoryRestController {
     public CreateOneCategoryRestController(CreateOneCategoryServicePort createOneCategoryServicePort) {
         this.createOneCategoryServicePort = createOneCategoryServicePort;
     }
+    @Operation(
+        summary = "Create a new category",
+        description = "Adds a new category to the system. The category name must be unique.",
+        tags = {"Categories"}
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "Category created successfully.",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CategoryResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Invalid input data.",
+            content = @Content(mediaType = "application/json")
+        ),
+        @ApiResponse(
+            responseCode = "409",
+            description = "Category already exists.",
+            content = @Content(mediaType = "application/json")
+        )
+    })
     @PostMapping
     public ResponseEntity<CategoryResponse> createOneCategory(@RequestBody @Valid CategoryCreateRequest categoryCreateRequest) throws CategoryDuplicatedException {
         Category category = CategoryRestMapper.createRequestToDomain(categoryCreateRequest);

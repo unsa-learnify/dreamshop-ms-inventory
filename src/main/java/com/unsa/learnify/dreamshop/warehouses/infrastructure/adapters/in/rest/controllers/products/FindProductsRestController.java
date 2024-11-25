@@ -9,6 +9,13 @@ import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dt
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.ProductRestMapper;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.utils.IntegerUtils;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -26,6 +33,22 @@ public class FindProductsRestController {
     public FindProductsRestController(FindProductsServicePort findProductsServicePort) {
         this.findProductsServicePort = findProductsServicePort;
     }
+    @Operation(
+        summary = "Retrieve a list of products with optional filters",
+        description = "Fetches a paginated list of products based on optional filters such as name, price range, quantity range, and category.",
+        tags = {"Products"}
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "200",
+            description = "List of products retrieved successfully.",
+            content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = ProductResponse.class)))
+        ),
+        @ApiResponse(
+            responseCode = "204",
+            description = "No products found matching the filters."
+        )
+    })
     @GetMapping
     public ResponseEntity<List<ProductResponse>> findProducts(@ModelAttribute @Valid ProductPageRequest productPageRequest) {
         Integer page = IntegerUtils.safeParseInteger(productPageRequest.getPage(), 0);

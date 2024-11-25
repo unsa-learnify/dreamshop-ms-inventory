@@ -5,8 +5,14 @@ import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.ProductDuplicate
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductCreateRequest;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductResponse;
-
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.ProductRestMapper;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
@@ -25,6 +31,22 @@ public class CreateOneProductRestController {
     public CreateOneProductRestController(CreateOneProductServicePort createOneProductServicePort) {
         this.createOneProductServicePort = createOneProductServicePort;
     }
+    @Operation(
+        summary = "Create a new product",
+        description = "Adds a new product to the catalog with the provided details.",
+        tags = {"Products"}
+    )
+    @ApiResponses({
+        @ApiResponse(
+            responseCode = "201",
+            description = "Product created successfully.",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProductResponse.class))
+        ),
+        @ApiResponse(
+            responseCode = "409",
+            description = "Product already exists. A product with the same name already exists in the catalog."
+        )
+    })
     @PostMapping
     public ResponseEntity<ProductResponse> createOneCategory(@RequestBody @Valid ProductCreateRequest productCreateRequest) throws ProductDuplicatedException {
         Product product = ProductRestMapper.createRequestToDomain(productCreateRequest);
