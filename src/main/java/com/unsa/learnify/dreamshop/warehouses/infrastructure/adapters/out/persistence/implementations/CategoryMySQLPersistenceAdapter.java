@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryPostgresPersistenceAdapter implements CategoryPersistencePort {
+public class CategoryMySQLPersistenceAdapter implements CategoryPersistencePort {
     private final CategoryJpaRepository categoryJpaRepository;
-    public CategoryPostgresPersistenceAdapter(CategoryJpaRepository categoryJpaRepository) {
+    public CategoryMySQLPersistenceAdapter(CategoryJpaRepository categoryJpaRepository) {
         this.categoryJpaRepository = categoryJpaRepository;
     }
     @Override

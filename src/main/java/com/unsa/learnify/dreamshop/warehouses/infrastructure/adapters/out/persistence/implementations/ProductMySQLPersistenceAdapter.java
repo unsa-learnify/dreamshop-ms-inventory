@@ -1,7 +1,6 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.implementations;
 
 import com.unsa.learnify.dreamshop.warehouses.application.ports.out.ProductPersistencePort;
-import com.unsa.learnify.dreamshop.warehouses.domain.models.Page;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.ProductFilters;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.entities.ProductEntity;
@@ -20,9 +19,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductPostgresPersistenceAdapter implements ProductPersistencePort {
+public class ProductMySQLPersistenceAdapter implements ProductPersistencePort {
     private final ProductJpaRepository productJpaRepository;
-    public ProductPostgresPersistenceAdapter(ProductJpaRepository productJpaRepository) {
+    public ProductMySQLPersistenceAdapter(ProductJpaRepository productJpaRepository) {
         this.productJpaRepository = productJpaRepository;
     }
     @Override
