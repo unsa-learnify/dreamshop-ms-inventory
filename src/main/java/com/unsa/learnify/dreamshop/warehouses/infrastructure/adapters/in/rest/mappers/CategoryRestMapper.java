@@ -1,9 +1,11 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers;
 
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Category;
+import com.unsa.learnify.dreamshop.warehouses.domain.models.PaginationResult;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryCreateRequest;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryUpdateRequest;
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.commons.PaginationResultResponse;
 
 public class CategoryRestMapper {
     private CategoryRestMapper() {}
@@ -28,6 +30,20 @@ public class CategoryRestMapper {
             .id(categoryId)
             .name(categoryUpdateRequest.name())
             .description(categoryUpdateRequest.description())
+            .build();
+    }
+    public static PaginationResultResponse<CategoryResponse> domainToResponsePagination(PaginationResult<Category> categoryPage) {
+        return PaginationResultResponse.<CategoryResponse>builder()
+            .totalItems(categoryPage.getTotalItems())
+            .totalPages(categoryPage.getTotalPages())
+            .currentPage(categoryPage.getCurrentPage())
+            .pageSize(categoryPage.getPageSize())
+            .hasNextPage(categoryPage.getHasNextPage())
+            .items(
+                categoryPage.getItems().stream()
+                    .map(CategoryRestMapper::domainToResponse)
+                    .toList()
+            )
             .build();
     }
 }

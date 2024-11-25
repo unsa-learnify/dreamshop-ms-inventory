@@ -4,8 +4,10 @@ import com.unsa.learnify.dreamshop.warehouses.application.ports.in.categories.Fi
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Category;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.CategoryFilters;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Page;
+import com.unsa.learnify.dreamshop.warehouses.domain.models.PaginationResult;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryQueryRequest;
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.commons.PaginationResultResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.CategoryRestMapper;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.utils.IntegerUtils;
 
@@ -20,8 +22,6 @@ import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/categories")
@@ -52,19 +52,21 @@ public class FindCategoriesRestController {
         )
     })
     @GetMapping
-    public ResponseEntity<List<CategoryResponse>> findCategoriesByPage(@ModelAttribute @Valid CategoryQueryRequest categoryQueryRequest) {
+    public ResponseEntity<PaginationResultResponse<CategoryResponse>> findCategoriesByPage(
+        @ModelAttribute @Valid CategoryQueryRequest categoryQueryRequest
+    ) {
         Integer page = IntegerUtils.safeParseInteger(categoryQueryRequest.getPage(), 0);
         Integer size = IntegerUtils.safeParseInteger(categoryQueryRequest.getSize(), 10);
         Page pageable = Page.builder().number(page).size(size).build();
-        CategoryFilters categoryFilters = CategoryFilters.builder().page(pageable).name(categoryQueryRequest.getName()).build();
-        List<Category> categories = this.findCategoriesServicePort.execute(categoryFilters);
-        if (categories.isEmpty()) {
+        CategoryFilters categoryFilters = CategoryFilters.builder()
+            .page(pageable)
+            .name(categoryQueryRequest.getName())
+            .description(categoryQueryRequest.getDescription())
+            .build();
+        PaginationResult<Category> categoryPage = this.findCategoriesServicePort.execute(categoryFilters);
+        if (categoryPage.getItems().isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        List<CategoryResponse> categoryResponses = categories
-            .stream()
-            .map(CategoryRestMapper::domainToResponse)
-            .toList();
-        return ResponseEntity.ok(categoryResponses);
+        return ResponseEntity.ok(CategoryRestMapper.domainToResponsePagination(categoryPage));
     }
 }
