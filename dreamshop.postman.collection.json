@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Tecnología\",\r\n    \"description\": \"Dispositivos electrónicos, accesorios, y gadgets innovadores para el hogar y oficina.\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Deportes\",\r\n    \"description\": \"Dispositivos electrónicos, accesorios, y gadgets innovadores para el hogar y oficina.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -44,7 +44,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{hostServer}}/{{categories}}?page=0&size=10&name=juguetes",
+									"raw": "{{hostServer}}/{{categories}}?page=0&size=10&name=deportes",
 									"host": [
 										"{{hostServer}}"
 									],
@@ -62,7 +62,7 @@
 										},
 										{
 											"key": "name",
-											"value": "juguetes"
+											"value": "deportes"
 										}
 									]
 								}
@@ -75,37 +75,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{hostServer}}/{{categories}}/5",
+									"raw": "{{hostServer}}/{{categories}}/1",
 									"host": [
 										"{{hostServer}}"
 									],
 									"path": [
 										"{{categories}}",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Find One Category By Name",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{hostServer}}/{{categories}}/name?query=Juguetes y Juegos",
-									"host": [
-										"{{hostServer}}"
-									],
-									"path": [
-										"{{categories}}",
-										"name"
-									],
-									"query": [
-										{
-											"key": "query",
-											"value": "Juguetes y Juegos"
-										}
+										"1"
 									]
 								}
 							},
@@ -168,7 +144,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Electric Bike\",\r\n    \"description\": \"An eco-friendly electric bike with a 60-mile range and pedal assist.\",\r\n    \"unitPrice\": 850.00,\r\n    \"currency\": \"EUR\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Electric Bike\",\r\n    \"description\": \"An eco-friendly electric bike with a 60-mile range and pedal assist.\",\r\n    \"unitPrice\": 250.00,\r\n    \"currency\": \"PEN\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -193,7 +169,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{hostServer}}/{{products}}?page=0&size=10&minPrice=500.0&maxPrice=2000.5&minQuantity=25&maxQuantity=50&categoryId=1",
+									"raw": "{{hostServer}}/{{products}}?page=0&size=10&name=Bike&minPrice=250.0&maxPrice=850.5&minQuantity=25&maxQuantity=50&categoryId=1",
 									"host": [
 										"{{hostServer}}"
 									],
@@ -210,12 +186,16 @@
 											"value": "10"
 										},
 										{
+											"key": "name",
+											"value": "Bike"
+										},
+										{
 											"key": "minPrice",
-											"value": "500.0"
+											"value": "250.0"
 										},
 										{
 											"key": "maxPrice",
-											"value": "2000.5"
+											"value": "850.5"
 										},
 										{
 											"key": "minQuantity",
@@ -247,30 +227,6 @@
 									"path": [
 										"{{products}}",
 										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Find Product By Name",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{hostServer}}/{{products}}/name?query=Electric Bike",
-									"host": [
-										"{{hostServer}}"
-									],
-									"path": [
-										"{{products}}",
-										"name"
-									],
-									"query": [
-										{
-											"key": "query",
-											"value": "Electric Bike"
-										}
 									]
 								}
 							},
@@ -309,13 +265,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{hostServer}}/{{products}}/4",
+									"raw": "{{hostServer}}/{{products}}/1",
 									"host": [
 										"{{hostServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"4"
+										"1"
 									]
 								}
 							},
