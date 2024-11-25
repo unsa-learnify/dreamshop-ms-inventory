@@ -19,7 +19,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Deportes\",\r\n    \"description\": \"Dispositivos electrónicos, accesorios, y gadgets innovadores para el hogar y oficina.\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Tecnología\",\r\n    \"description\": \"Dispositivos electrónicos, accesorios, y gadgets innovadores para el hogar y oficina.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -144,7 +144,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Electric Bike\",\r\n    \"description\": \"An eco-friendly electric bike with a 60-mile range and pedal assist.\",\r\n    \"unitPrice\": 250.00,\r\n    \"currency\": \"PEN\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Electric Bike\",\r\n    \"description\": \"An eco-friendly electric bike with a 60-mile range and pedal assist.\",\r\n    \"unitPrice\": 250.00,\r\n    \"currency\": \"USD\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -239,7 +239,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"USD\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
