@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigDecimal;
 
-public class ProductSpecifications {
+public class ProductQuerySpecifications {
     public static Specification<ProductEntity> nameContains(String name) {
         return (root, query, criteriaBuilder) -> {
             if (name == null || name.isBlank()) {

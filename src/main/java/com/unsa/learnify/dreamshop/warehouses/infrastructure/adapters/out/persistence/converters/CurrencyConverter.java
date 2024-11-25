@@ -16,11 +16,10 @@ public class CurrencyConverter implements AttributeConverter<Currency, String> {
         if (currencyCode == null || currencyCode.isEmpty()) {
             return Currency.DOLLAR;
         }
-        for (Currency currency : Currency.values()) {
-            if (currency.getCode().equals(currencyCode)) {
-                return currency;
-            }
+        try {
+            return Currency.valueOf(currencyCode);
+        } catch (IllegalArgumentException e) {
+            return Currency.DOLLAR;
         }
-        return Currency.DOLLAR;
     }
 }

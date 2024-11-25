@@ -6,7 +6,7 @@ import com.unsa.learnify.dreamshop.warehouses.domain.models.ProductFilters;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.entities.ProductEntity;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.mappers.ProductPersistenceMapper;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.repositories.ProductJpaRepository;
-import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.specifications.ProductSpecifications;
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persistence.specifications.ProductQuerySpecifications;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -35,22 +35,22 @@ public class ProductMySQLPersistenceAdapter implements ProductPersistencePort {
     public List<Product> findProductsByFilters(ProductFilters productFilters) {
         Specification<ProductEntity> specification = Specification.where(null);
         if (productFilters.getName() != null) {
-            specification = specification.and(ProductSpecifications.nameContains(productFilters.getName()));
+            specification = specification.and(ProductQuerySpecifications.nameContains(productFilters.getName()));
         }
         if (productFilters.getCategoryId() != null) {
-            specification = specification.and(ProductSpecifications.categoryEquals(productFilters.getCategoryId()));
+            specification = specification.and(ProductQuerySpecifications.categoryEquals(productFilters.getCategoryId()));
         }
         if (productFilters.getMinPrice() != null) {
-            specification = specification.and(ProductSpecifications.priceGreaterThanOrEqual(productFilters.getMinPrice()));
+            specification = specification.and(ProductQuerySpecifications.priceGreaterThanOrEqual(productFilters.getMinPrice()));
         }
         if (productFilters.getMaxPrice() != null) {
-            specification = specification.and(ProductSpecifications.priceLessThanOrEqual(productFilters.getMaxPrice()));
+            specification = specification.and(ProductQuerySpecifications.priceLessThanOrEqual(productFilters.getMaxPrice()));
         }
         if (productFilters.getMinQuantity() != null) {
-            specification = specification.and(ProductSpecifications.quantityGreaterThanOrEqual(productFilters.getMinQuantity()));
+            specification = specification.and(ProductQuerySpecifications.quantityGreaterThanOrEqual(productFilters.getMinQuantity()));
         }
         if (productFilters.getMaxQuantity() != null) {
-            specification = specification.and(ProductSpecifications.quantityLessThanOrEqual(productFilters.getMaxQuantity()));
+            specification = specification.and(ProductQuerySpecifications.quantityLessThanOrEqual(productFilters.getMaxQuantity()));
         }
         Pageable pageable = PageRequest.of(
             productFilters.getPage().getNumber(),
