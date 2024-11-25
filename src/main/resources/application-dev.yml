@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/warehouses}
-    username: ${DATASOURCE_USERNAME:postgres}
-    password: ${DATASOURCE_PASSWORD:postgres}
+    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/warehouses}
+    username: ${DATASOURCE_USERNAME:root}
+    password: ${DATASOURCE_PASSWORD:ahincho}
     hikari:
       maximum-pool-size: ${MAX_POOL_SIZE:10}
       minimum-idle: ${MIN_POOL_SIZE:2}
@@ -22,9 +22,9 @@ spring:
     open-in-view: false
   flyway:
     enabled: true
-    url: ${FLYWAY_URL:jdbc:postgresql://localhost:5432/warehouses}
-    user: ${FLYWAY_USER:postgres}
-    password: ${FLYWAY_PASSWORD:postgres}
+    url: ${FLYWAY_URL:jdbc:mysql://localhost:3306/warehouses}
+    user: ${FLYWAY_USER:root}
+    password: ${FLYWAY_PASSWORD:ahincho}
 springdoc:
   api-docs:
     path: ${SPRINGDOC_PATH:/api/docs}
