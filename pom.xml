@@ -41,6 +41,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<spring.docs.open.api.version>2.7.0</spring.docs.open.api.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,6 +51,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${spring.docs.open.api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
