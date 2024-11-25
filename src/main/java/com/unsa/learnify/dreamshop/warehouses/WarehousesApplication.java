@@ -1,13 +1,11 @@
-package com.unsa.learnify.dreamshop.products;
+package com.unsa.learnify.dreamshop.warehouses;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProductsApplication {
-
+public class WarehousesApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ProductsApplication.class, args);
+		SpringApplication.run(WarehousesApplication.class, args);
 	}
-
 }
