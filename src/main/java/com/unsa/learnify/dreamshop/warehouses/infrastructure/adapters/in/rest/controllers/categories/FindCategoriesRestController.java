@@ -31,7 +31,7 @@ public class FindCategoriesRestController {
         this.findCategoriesServicePort = findCategoriesServicePort;
     }
     @Operation(
-        summary = "Retrieve categories by page",
+        summary = "Retrieve a list of categories with optional filters",
         description = "Fetches a paginated list of categories based on the provided filters.",
         tags = {"Categories"}
     )
