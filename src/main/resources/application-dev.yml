@@ -25,6 +25,12 @@ spring:
     url: ${FLYWAY_URL:jdbc:postgresql://localhost:5432/warehouses}
     user: ${FLYWAY_USER:postgres}
     password: ${FLYWAY_PASSWORD:postgres}
+springdoc:
+  api-docs:
+    path: ${SPRINGDOC_PATH:/api/docs}
+  swagger-ui:
+    path: ${SPRINGDOC_SWAGGER_PATH:/api/swagger/}
+    operations-sorter: method
 logging:
   level:
     org.hibernate.orm.connections.pooling: WARN
