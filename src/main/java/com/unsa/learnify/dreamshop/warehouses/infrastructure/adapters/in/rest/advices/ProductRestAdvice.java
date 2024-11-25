@@ -1,5 +1,6 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.advices;
 
+import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.CurrencyNotFoundException;
 import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.ProductDuplicatedException;
 import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.ProductNotFoundException;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.commons.ExceptionResponse;
@@ -40,5 +41,19 @@ public class ProductRestAdvice {
             .message(productDuplicatedException.getMessage())
             .build();
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exceptionResponse);
+    }
+    @ExceptionHandler(CurrencyNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> currencyNotFoundException(
+        CurrencyNotFoundException currencyNotFoundException,
+        HttpServletRequest httpServletRequest
+    ) {
+        ExceptionResponse exceptionResponse = ExceptionResponse.builder()
+            .path(httpServletRequest.getRequestURI())
+            .method(httpServletRequest.getMethod())
+            .statusCode(HttpStatus.NOT_FOUND.value())
+            .statusMessage(HttpStatus.NOT_FOUND.name())
+            .message(currencyNotFoundException.getMessage())
+            .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
     }
 }

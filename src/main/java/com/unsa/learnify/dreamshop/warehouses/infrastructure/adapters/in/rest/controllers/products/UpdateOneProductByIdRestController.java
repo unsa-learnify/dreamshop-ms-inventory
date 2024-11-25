@@ -1,6 +1,7 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.controllers.products;
 
 import com.unsa.learnify.dreamshop.warehouses.application.ports.in.products.UpdateOneProductByIdServicePort;
+import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.CurrencyNotFoundException;
 import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.ProductDuplicatedException;
 import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.ProductNotFoundException;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,8 +51,8 @@ public class UpdateOneProductByIdRestController {
             required = true
         )
         @PathVariable Integer productId,
-        @RequestBody ProductUpdateRequest productUpdateRequest
-    ) throws ProductDuplicatedException, ProductNotFoundException {
+        @RequestBody @Valid ProductUpdateRequest productUpdateRequest
+    ) throws ProductDuplicatedException, ProductNotFoundException, CurrencyNotFoundException {
         Product product = ProductRestMapper.updateRequestToDomain(productId, productUpdateRequest);
         this.updateProductByIdService.execute(productId, product);
         return ResponseEntity.noContent().build();

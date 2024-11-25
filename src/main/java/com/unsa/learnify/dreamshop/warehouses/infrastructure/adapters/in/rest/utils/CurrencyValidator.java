@@ -6,24 +6,30 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CurrencyValidator implements ConstraintValidator<ValidCurrency, String> {
-    private String validCurrencies;
+    private Set<String> validCurrencyCodes;
+    private String validCurrenciesMessage;
     @Override
     public void initialize(ValidCurrency constraintAnnotation) {
-        validCurrencies = Arrays.stream(Currency.values())
+        validCurrencyCodes = Arrays.stream(Currency.values())
             .map(Currency::getCode)
-            .collect(Collectors.joining(", "));
+            .map(String::toUpperCase)
+            .collect(Collectors.toSet());
+        validCurrenciesMessage = String.join(", ", validCurrencyCodes);
     }
     @Override
     public boolean isValid(String currencyCode, ConstraintValidatorContext context) {
-        boolean isValid = Arrays.stream(Currency.values())
-            .anyMatch(currency -> currency.getCode().equalsIgnoreCase(currencyCode));
+        if (currencyCode == null || currencyCode.isEmpty()) {
+            return true;
+        }
+        boolean isValid = validCurrencyCodes.contains(currencyCode.toUpperCase());
         if (!isValid) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(
-                "Invalid currency code. Valid values are: " + validCurrencies
+                "Invalid currency code. Valid values are: " + validCurrenciesMessage
             ).addConstraintViolation();
         }
         return isValid;

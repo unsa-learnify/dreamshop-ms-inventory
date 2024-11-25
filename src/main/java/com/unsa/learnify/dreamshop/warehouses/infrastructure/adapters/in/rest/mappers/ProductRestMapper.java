@@ -1,10 +1,13 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers;
 
+import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.CurrencyNotFoundException;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Currency;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductCreateRequest;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductUpdateRequest;
+
+import java.util.Arrays;
 
 public class ProductRestMapper {
     private ProductRestMapper() {}
@@ -20,7 +23,7 @@ public class ProductRestMapper {
             .updatedAt(product.getUpdatedAt())
             .build();
     }
-    public static Product createRequestToDomain(ProductCreateRequest productCreateRequest) {
+    public static Product createRequestToDomain(ProductCreateRequest productCreateRequest) throws CurrencyNotFoundException {
         return Product.builder()
             .id(null)
             .name(productCreateRequest.name())
@@ -29,7 +32,7 @@ public class ProductRestMapper {
             .currency(parseCurrency(productCreateRequest.currency()))
             .build();
     }
-    public static Product updateRequestToDomain(Integer productId, ProductUpdateRequest productUpdateRequest) {
+    public static Product updateRequestToDomain(Integer productId, ProductUpdateRequest productUpdateRequest) throws CurrencyNotFoundException {
         return Product.builder()
             .id(productId)
             .name(productUpdateRequest.name())
@@ -38,15 +41,13 @@ public class ProductRestMapper {
             .currency(parseCurrency(productUpdateRequest.currency()))
             .build();
     }
-    private static Currency parseCurrency(String currencyCode) {
+    private static Currency parseCurrency(String currencyCode) throws CurrencyNotFoundException {
         if (currencyCode == null || currencyCode.isEmpty()) {
             return null;
         }
-        for (Currency currency : Currency.values()) {
-            if (currency.getCode().equalsIgnoreCase(currencyCode)) {
-                return currency;
-            }
-        }
-        return Currency.DOLLAR;
+        return Arrays.stream(Currency.values())
+            .filter(currency -> currency.getCode().equalsIgnoreCase(currencyCode))
+            .findFirst()
+            .orElseThrow(() -> new CurrencyNotFoundException("Currency code '" + currencyCode + "' not found"));
     }
 }

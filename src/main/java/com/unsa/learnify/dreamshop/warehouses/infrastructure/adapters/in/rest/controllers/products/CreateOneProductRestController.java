@@ -1,6 +1,7 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.controllers.products;
 
 import com.unsa.learnify.dreamshop.warehouses.application.ports.in.products.CreateOneProductServicePort;
+import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.CurrencyNotFoundException;
 import com.unsa.learnify.dreamshop.warehouses.domain.exceptions.ProductDuplicatedException;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductCreateRequest;
@@ -48,7 +49,7 @@ public class CreateOneProductRestController {
         )
     })
     @PostMapping
-    public ResponseEntity<ProductResponse> createOneCategory(@RequestBody @Valid ProductCreateRequest productCreateRequest) throws ProductDuplicatedException {
+    public ResponseEntity<ProductResponse> createOneCategory(@RequestBody @Valid ProductCreateRequest productCreateRequest) throws ProductDuplicatedException, CurrencyNotFoundException {
         Product product = ProductRestMapper.createRequestToDomain(productCreateRequest);
         Product savedCategory = this.createOneProductServicePort.execute(product);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{productId}").buildAndExpand(product.getId()).toUri();
