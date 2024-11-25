@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "7e9c90bf-b83b-4206-9d4a-9e1fe847b786",
+		"name": "DreamShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28629003"
+	},
+	"item": [
+		{
+			"name": "Warehouses",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Create One Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Tecnología\",\r\n    \"description\": \"Dispositivos electrónicos, accesorios, y gadgets innovadores para el hogar y oficina.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostServer}}/{{categories}}",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{categories}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{categories}}?page=0&size=10&name=juguetes",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{categories}}"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "juguetes"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find One Category By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{categories}}/5",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{categories}}",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find One Category By Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{categories}}/name?query=Juguetes y Juegos",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{categories}}",
+										"name"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Juguetes y Juegos"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update One Category By Id",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Deportes y Aire Libre\",\r\n    \"description\": \"Equipo deportivo, ropa, y accesorios para actividades al aire libre y ejercicio físico.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostServer}}/{{categories}}/1",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{categories}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete One Category By Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{categories}}/1",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{categories}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Create One Product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Electric Bike\",\r\n    \"description\": \"An eco-friendly electric bike with a 60-mile range and pedal assist.\",\r\n    \"unitPrice\": 850.00,\r\n    \"currency\": \"EUR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostServer}}/{{products}}",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{products}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{products}}?page=0&size=10&minPrice=500.0&maxPrice=2000.5&minQuantity=25&maxQuantity=50&categoryId=1",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{products}}"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "minPrice",
+											"value": "500.0"
+										},
+										{
+											"key": "maxPrice",
+											"value": "2000.5"
+										},
+										{
+											"key": "minQuantity",
+											"value": "25"
+										},
+										{
+											"key": "maxQuantity",
+											"value": "50"
+										},
+										{
+											"key": "categoryId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Product By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{products}}/1",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{products}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Product By Name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{products}}/name?query=Electric Bike",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{products}}",
+										"name"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "Electric Bike"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update One Product By Id",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"USD\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{hostServer}}/{{products}}/1",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{products}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete One Product By Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{hostServer}}/{{products}}/4",
+									"host": [
+										"{{hostServer}}"
+									],
+									"path": [
+										"{{products}}",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostServer",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "categories",
+			"value": "api/v1/categories",
+			"type": "string"
+		},
+		{
+			"key": "products",
+			"value": "api/v1/products",
+			"type": "string"
+		}
+	]
+}
