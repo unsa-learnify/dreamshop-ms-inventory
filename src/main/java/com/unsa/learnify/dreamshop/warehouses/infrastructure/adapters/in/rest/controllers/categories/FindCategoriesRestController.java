@@ -5,7 +5,7 @@ import com.unsa.learnify.dreamshop.warehouses.domain.models.Category;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.CategoryFilters;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Page;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryResponse;
-import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryPageRequest;
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryQueryRequest;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.CategoryRestMapper;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.utils.IntegerUtils;
 
@@ -52,11 +52,11 @@ public class FindCategoriesRestController {
         )
     })
     @GetMapping
-    public ResponseEntity<List<CategoryResponse>> findCategoriesByPage(@ModelAttribute @Valid CategoryPageRequest categoryPageRequest) {
-        Integer page = IntegerUtils.safeParseInteger(categoryPageRequest.getPage(), 0);
-        Integer size = IntegerUtils.safeParseInteger(categoryPageRequest.getSize(), 10);
+    public ResponseEntity<List<CategoryResponse>> findCategoriesByPage(@ModelAttribute @Valid CategoryQueryRequest categoryQueryRequest) {
+        Integer page = IntegerUtils.safeParseInteger(categoryQueryRequest.getPage(), 0);
+        Integer size = IntegerUtils.safeParseInteger(categoryQueryRequest.getSize(), 10);
         Page pageable = Page.builder().number(page).size(size).build();
-        CategoryFilters categoryFilters = CategoryFilters.builder().page(pageable).name(categoryPageRequest.getName()).build();
+        CategoryFilters categoryFilters = CategoryFilters.builder().page(pageable).name(categoryQueryRequest.getName()).build();
         List<Category> categories = this.findCategoriesServicePort.execute(categoryFilters);
         if (categories.isEmpty()) {
             return ResponseEntity.noContent().build();

@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Schema(description = "Query parameters for filtering and paginating categories.")
-public class CategoryPageRequest {
+public class CategoryQueryRequest {
     @Schema(
         description = "Page number for pagination. Must be a positive integer.",
         example = "0",

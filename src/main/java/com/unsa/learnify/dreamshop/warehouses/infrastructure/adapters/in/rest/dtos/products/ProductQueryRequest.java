@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 
 @Data
 @Schema(description = "Query parameters for paginating and filtering the list of products.")
-public class ProductPageRequest {
+public class ProductQueryRequest {
     @Schema(
         description = "Page number for pagination. Must be a positive integer.",
         example = "0"

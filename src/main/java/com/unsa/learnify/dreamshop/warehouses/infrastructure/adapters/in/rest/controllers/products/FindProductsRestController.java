@@ -4,7 +4,7 @@ import com.unsa.learnify.dreamshop.warehouses.application.ports.in.products.Find
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Page;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.ProductFilters;
-import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductPageRequest;
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductQueryRequest;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.ProductRestMapper;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.utils.IntegerUtils;
@@ -50,18 +50,18 @@ public class FindProductsRestController {
         )
     })
     @GetMapping
-    public ResponseEntity<List<ProductResponse>> findProducts(@ModelAttribute @Valid ProductPageRequest productPageRequest) {
-        Integer page = IntegerUtils.safeParseInteger(productPageRequest.getPage(), 0);
-        Integer size = IntegerUtils.safeParseInteger(productPageRequest.getSize(), 0);
+    public ResponseEntity<List<ProductResponse>> findProducts(@ModelAttribute @Valid ProductQueryRequest productQueryRequest) {
+        Integer page = IntegerUtils.safeParseInteger(productQueryRequest.getPage(), 0);
+        Integer size = IntegerUtils.safeParseInteger(productQueryRequest.getSize(), 0);
         Page pageable = Page.builder().number(page).size(size).build();
         ProductFilters productFilters = ProductFilters.builder()
             .page(pageable)
-            .name(productPageRequest.getName())
-            .minPrice(productPageRequest.getMinPrice())
-            .maxPrice(productPageRequest.getMaxPrice())
-            .minQuantity(IntegerUtils.safeParseInteger(productPageRequest.getMinQuantity(), null))
-            .maxQuantity(IntegerUtils.safeParseInteger(productPageRequest.getMaxQuantity(), null))
-            .categoryId(IntegerUtils.safeParseInteger(productPageRequest.getCategoryId(), null))
+            .name(productQueryRequest.getName())
+            .minPrice(productQueryRequest.getMinPrice())
+            .maxPrice(productQueryRequest.getMaxPrice())
+            .minQuantity(IntegerUtils.safeParseInteger(productQueryRequest.getMinQuantity(), null))
+            .maxQuantity(IntegerUtils.safeParseInteger(productQueryRequest.getMaxQuantity(), null))
+            .categoryId(IntegerUtils.safeParseInteger(productQueryRequest.getCategoryId(), null))
             .build();
         List<Product> products = this.findProductsServicePort.execute(productFilters);
         if (products.isEmpty()) {
