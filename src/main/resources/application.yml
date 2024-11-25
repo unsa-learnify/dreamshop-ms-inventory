@@ -1,5 +1,5 @@
 spring:
   application:
-    name: products
+    name: Warehouses
   profiles:
-    active: dev
+    active: ${SPRING_PROFILE:dev}
