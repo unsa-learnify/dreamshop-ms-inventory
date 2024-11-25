@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryFilters {
+public class NoteFilters {
     private Page page;
-    private String name;
-    private String description;
+    private String title;
+    private Movement movement;
+    private Integer minAmount;
+    private Integer maxAmount;
+    private Integer productId;
 }
