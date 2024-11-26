@@ -124,13 +124,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{warehousesServer}}/{{categories}}/1",
+									"raw": "{{warehousesServer}}/{{categories}}/2",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{categories}}",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -148,7 +148,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Teclado Mecánico\",\r\n    \"description\": \"Teclado mecánico con retroiluminación RGB y teclas anti-ghosting.\",\r\n    \"code\": \"987-65-432-1098-7\",\r\n    \"unitPrice\": 49.99,\r\n    \"currency\": \"USD\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Ratón Gaming\",\r\n    \"description\": \"Ratón ergonómico con 6 botones programables y sensor de alta precisión.\",\r\n    \"code\": \"456-78-901-2345-6\",\r\n    \"unitPrice\": 29.99,\r\n    \"currency\": \"USD\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -174,7 +174,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"categoryIds\": [\r\n        1,\r\n        2\r\n    ]\r\n}",
+									"raw": "{\r\n    \"categoryIds\": [\r\n        1,\r\n        3\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -182,13 +182,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/2/categories",
+									"raw": "{{warehousesServer}}/{{products}}/6/categories",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"2",
+										"6",
 										"categories"
 									]
 								}
@@ -218,13 +218,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/99999",
+									"raw": "{{warehousesServer}}/{{products}}/6",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"99999"
+										"6"
 									]
 								}
 							},
@@ -237,7 +237,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"code\": \"123-78-901-2345-6\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -245,13 +245,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/1",
+									"raw": "{{warehousesServer}}/{{products}}/6",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"1"
+										"6"
 									]
 								}
 							},
@@ -484,7 +484,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Deportes\",\r\n    \"description\": \"Equipos y accesorios para una amplia variedad de deportes, como fútbol, baloncesto, tenis, y más\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Electrodomésticos y Tecnología\",\r\n    \"description\": \"Una amplia gama de electrodomésticos y dispositivos tecnológicos para el hogar, como televisores, refrigeradores, lavadoras, computadoras y más.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -509,7 +509,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{apiGateway}}/categories?page=0&size=10&name=libre",
+									"raw": "{{apiGateway}}/categories?page=0&size=10&name=",
 									"host": [
 										"{{apiGateway}}"
 									],
@@ -527,7 +527,7 @@
 										},
 										{
 											"key": "name",
-											"value": "libre"
+											"value": ""
 										}
 									]
 								}
@@ -629,7 +629,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Teclado\",\r\n    \"description\": \"Un teclado mecánico con retroiluminación RGB y teclas de alta durabilidad.\",\r\n    \"unitPrice\": 25.00,\r\n    \"currency\": \"PEN\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Ratón Gaming\",\r\n    \"description\": \"Ratón ergonómico con 6 botones programables y sensor de alta precisión.\",\r\n    \"code\": \"456-78-901-2345-6\",\r\n    \"unitPrice\": 29.99,\r\n    \"currency\": \"USD\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -643,6 +643,34 @@
 									],
 									"path": [
 										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Categories To Product By Id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryIds\": [\r\n        1,\r\n        3\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiGateway}}/products/1/categories",
+									"host": [
+										"{{apiGateway}}"
+									],
+									"path": [
+										"products",
+										"1",
+										"categories"
 									]
 								}
 							},
@@ -681,14 +709,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{apiGateway}}/products/1/",
+									"raw": "{{apiGateway}}/products/1",
 									"host": [
 										"{{apiGateway}}"
 									],
 									"path": [
 										"products",
-										"1",
-										""
+										"1"
 									]
 								}
 							},
@@ -701,7 +728,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"code\": \"123-78-901-2345-6\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
