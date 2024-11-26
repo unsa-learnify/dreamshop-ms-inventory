@@ -83,12 +83,12 @@ public class ProductMySQLPersistenceAdapter implements ProductPersistencePort {
     @Override
     public Optional<Product> findOneProductByName(String productName) {
         return this.productJpaRepository.findByNameIgnoreCase(productName)
-            .map(ProductPersistenceMapper::entityToDomain);
+            .map(ProductPersistenceMapper::entityWitNoCategoriesToDomain);
     }
     @Override
     public Optional<Product> findOneProductByCode(String productCode) {
         return this.productJpaRepository.findByCode(productCode)
-            .map(ProductPersistenceMapper::entityToDomain);
+            .map(ProductPersistenceMapper::entityWitNoCategoriesToDomain);
     }
     @Override
     public Boolean existsOneProductById(Integer productId) {

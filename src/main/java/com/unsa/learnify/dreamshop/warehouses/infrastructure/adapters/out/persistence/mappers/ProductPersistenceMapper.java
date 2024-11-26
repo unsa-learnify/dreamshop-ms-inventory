@@ -44,6 +44,20 @@ public class ProductPersistenceMapper {
             )
             .build();
     }
+    public static Product entityWitNoCategoriesToDomain(ProductEntity productEntity) {
+        return Product.builder()
+            .id(productEntity.getId())
+            .name(productEntity.getName())
+            .description(productEntity.getDescription())
+            .code(productEntity.getCode())
+            .unitPrice(productEntity.getUnitPrice())
+            .currency(productEntity.getCurrency())
+            .quantity(productEntity.getQuantity())
+            .createdAt(productEntity.getCreatedAt())
+            .updatedAt(productEntity.getUpdatedAt())
+            .categories(new HashSet<>())
+            .build();
+    }
     public static List<Product> entityListToDomainList(List<ProductEntity> productEntities) {
         return productEntities.stream()
             .map(ProductPersistenceMapper::entityToDomain)
