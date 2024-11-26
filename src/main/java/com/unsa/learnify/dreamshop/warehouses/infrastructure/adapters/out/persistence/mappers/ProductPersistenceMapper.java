@@ -6,6 +6,7 @@ import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.out.persis
 
 import org.springframework.data.domain.Page;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,9 +35,13 @@ public class ProductPersistenceMapper {
             .quantity(productEntity.getQuantity())
             .createdAt(productEntity.getCreatedAt())
             .updatedAt(productEntity.getUpdatedAt())
-            .categories(productEntity.getCategories().stream()
-                .map(CategoryPersistenceMapper::entityToDomain)
-                .collect(Collectors.toSet()))
+            .categories(
+                productEntity.getCategories() == null ?
+                    new HashSet<>() :
+                    productEntity.getCategories().stream()
+                        .map(CategoryPersistenceMapper::entityToDomain)
+                        .collect(Collectors.toSet())
+            )
             .build();
     }
     public static List<Product> entityListToDomainList(List<ProductEntity> productEntities) {

@@ -77,7 +77,7 @@ public class ProductMySQLPersistenceAdapter implements ProductPersistencePort {
     }
     @Override
     public Optional<Product> findOneProductById(Integer productId) {
-        return this.productJpaRepository.findById(productId)
+        return this.productJpaRepository.findByIdWithCategories(productId)
             .map(ProductPersistenceMapper::entityToDomain);
     }
     @Override
