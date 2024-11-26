@@ -14,6 +14,8 @@ import java.math.BigDecimal;
 public class ProductFilters {
     private Page page;
     private String name;
+    private String description;
+    private String code;
     private BigDecimal minPrice;
     private BigDecimal maxPrice;
     private Integer minQuantity;

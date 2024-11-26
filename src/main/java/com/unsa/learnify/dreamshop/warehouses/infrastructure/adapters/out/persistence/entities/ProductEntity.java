@@ -10,12 +10,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,11 +23,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Data
 @Builder
+@EqualsAndHashCode(exclude = "categories")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "products")
@@ -38,6 +38,7 @@ public class ProductEntity {
     private Integer id;
     private String name;
     private String description;
+    private String code;
     private BigDecimal unitPrice;
     private Currency currency;
     private Integer quantity;
@@ -52,6 +53,4 @@ public class ProductEntity {
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<CategoryEntity> categories;
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    private List<NoteEntity> notes;
 }

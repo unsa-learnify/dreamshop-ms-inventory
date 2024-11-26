@@ -7,8 +7,6 @@ import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CreateOneProductService implements CreateOneProductServicePort {
     private final ProductPersistencePort productPersistencePort;
@@ -17,9 +15,11 @@ public class CreateOneProductService implements CreateOneProductServicePort {
     }
     @Override
     public Product execute(Product product) throws ProductDuplicatedException {
-        Optional<Product> existingProduct = this.productPersistencePort.findOneProductByName(product.getName());
-        if (existingProduct.isPresent()) {
+        if (this.productPersistencePort.existsOneProductByName(product.getName())) {
             throw new ProductDuplicatedException("Product with name '" + product.getName() + "' already exists");
+        }
+        if (this.productPersistencePort.existsOneProductByCode(product.getCode())) {
+            throw new ProductDuplicatedException("Product with code '" + product.getCode() + "' already exists");
         }
         return this.productPersistencePort.createOneProduct(product);
     }

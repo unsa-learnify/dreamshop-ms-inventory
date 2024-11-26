@@ -32,7 +32,7 @@ public class CategoryRestMapper {
             .description(categoryUpdateRequest.description())
             .build();
     }
-    public static PaginationResultResponse<CategoryResponse> domainToResponsePagination(PaginationResult<Category> categoryPage) {
+    public static PaginationResultResponse<CategoryResponse> domainToPaginationResponse(PaginationResult<Category> categoryPage) {
         return PaginationResultResponse.<CategoryResponse>builder()
             .totalItems(categoryPage.getTotalItems())
             .totalPages(categoryPage.getTotalPages())

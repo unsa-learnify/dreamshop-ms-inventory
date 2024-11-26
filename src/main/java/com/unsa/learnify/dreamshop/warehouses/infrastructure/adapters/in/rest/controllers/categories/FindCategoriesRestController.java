@@ -67,6 +67,6 @@ public class FindCategoriesRestController {
         if (categoryPage.getItems().isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(CategoryRestMapper.domainToResponsePagination(categoryPage));
+        return ResponseEntity.ok(CategoryRestMapper.domainToPaginationResponse(categoryPage));
     }
 }

@@ -27,6 +27,12 @@ public class UpdateOneOneProductByIdService implements UpdateOneProductByIdServi
                 throw new ProductDuplicatedException("Product with name '" + product.getName() + "' already exists");
             }
         }
+        if (product.getCode() != null) {
+            Optional<Product> existingProductByCode = this.productPersistencePort.findOneProductByCode(product.getCode());
+            if (existingProductByCode.isPresent() && !existingProductByCode.get().getId().equals(productId)) {
+                throw new ProductDuplicatedException("Product with code '" + product.getCode() + "' already exists");
+            }
+        }
         this.productPersistencePort.updateOneProductById(productId, product);
     }
 }

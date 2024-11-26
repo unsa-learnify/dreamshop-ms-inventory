@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -25,5 +24,4 @@ public class Product {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Set<Category> categories;
-    private List<Note> notes;
 }
