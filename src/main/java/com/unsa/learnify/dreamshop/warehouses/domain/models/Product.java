@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {

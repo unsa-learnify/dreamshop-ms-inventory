@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Products Report</h1>
+    <p>Generated on: <span th:text="${#temporals.format(date, 'yyyy-MM-dd HH:mm')}"></span></p>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Currency</th>
+        <th>Quantity</th>
+        <th>Categories</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.unitPrice}"></td>
+        <td th:text="${product.currency}"></td>
+        <td th:text="${product.quantity}"></td>
+        <td>
+            <ul>
+                <li th:each="category : ${product.categories}" th:text="${category.name}"></li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
