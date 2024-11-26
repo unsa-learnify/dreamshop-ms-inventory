@@ -148,7 +148,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Ratón Gaming\",\r\n    \"description\": \"Ratón ergonómico con 6 botones programables y sensor de alta precisión.\",\r\n    \"code\": \"456-78-901-2345-6\",\r\n    \"unitPrice\": 29.99,\r\n    \"currency\": \"USD\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Random\",\r\n    \"description\": \"Ratón ergonómico con 6 botones programables y sensor de alta precisión.\",\r\n    \"code\": \"123-78-901-2345-6\",\r\n    \"unitPrice\": 29.99,\r\n    \"currency\": \"PEN\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -213,18 +213,35 @@
 							"response": []
 						},
 						{
-							"name": "Find Product By Id",
+							"name": "Find Products Copy",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/6",
+									"raw": "{{warehousesServer}}/{{products}}",
+									"host": [
+										"{{warehousesServer}}"
+									],
+									"path": [
+										"{{products}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export Products to PDF",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{warehousesServer}}/{{products}}/reports",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"6"
+										"reports"
 									]
 								}
 							},
@@ -263,13 +280,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/999",
+									"raw": "{{warehousesServer}}/{{products}}/6",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"999"
+										"6"
 									]
 								}
 							},
@@ -629,7 +646,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Ratón Gaming\",\r\n    \"description\": \"Ratón ergonómico con 6 botones programables y sensor de alta precisión.\",\r\n    \"code\": \"456-78-901-2345-6\",\r\n    \"unitPrice\": 29.99,\r\n    \"currency\": \"USD\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Gaming\",\r\n    \"description\": \"Ratón ergonómico con 6 botones programables y sensor de alta precisión.\",\r\n    \"code\": \"012-78-901-2345-6\",\r\n    \"unitPrice\": 29.99,\r\n    \"currency\": \"PEN\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -716,6 +733,24 @@
 									"path": [
 										"products",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Export Products to PDF",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{apiGateway}}/products/reports",
+									"host": [
+										"{{apiGateway}}"
+									],
+									"path": [
+										"products",
+										"reports"
 									]
 								}
 							},
