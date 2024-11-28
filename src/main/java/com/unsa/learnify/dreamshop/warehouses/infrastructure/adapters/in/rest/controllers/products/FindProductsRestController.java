@@ -2,8 +2,10 @@ package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.c
 
 import com.unsa.learnify.dreamshop.warehouses.application.ports.in.products.FindProductsServicePort;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Page;
+import com.unsa.learnify.dreamshop.warehouses.domain.models.PaginationResult;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Product;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.ProductFilters;
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.commons.PaginationResultResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductQueryRequest;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products.ProductResponse;
 import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.mappers.ProductRestMapper;
@@ -23,8 +25,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -50,23 +50,27 @@ public class FindProductsRestController {
         )
     })
     @GetMapping
-    public ResponseEntity<List<ProductResponse>> findProducts(@ModelAttribute @Valid ProductQueryRequest productQueryRequest) {
+    public ResponseEntity<PaginationResultResponse<ProductResponse>> findProducts(
+        @ModelAttribute @Valid ProductQueryRequest productQueryRequest
+    ) {
         Integer page = IntegerUtils.safeParseInteger(productQueryRequest.getPage(), 0);
         Integer size = IntegerUtils.safeParseInteger(productQueryRequest.getSize(), 0);
         Page pageable = Page.builder().number(page).size(size).build();
         ProductFilters productFilters = ProductFilters.builder()
             .page(pageable)
             .name(productQueryRequest.getName())
+            .description(productQueryRequest.getDescription())
+            .code(productQueryRequest.getCode())
             .minPrice(productQueryRequest.getMinPrice())
             .maxPrice(productQueryRequest.getMaxPrice())
             .minQuantity(IntegerUtils.safeParseInteger(productQueryRequest.getMinQuantity(), null))
             .maxQuantity(IntegerUtils.safeParseInteger(productQueryRequest.getMaxQuantity(), null))
             .categoryId(IntegerUtils.safeParseInteger(productQueryRequest.getCategoryId(), null))
             .build();
-        List<Product> products = this.findProductsServicePort.execute(productFilters);
-        if (products.isEmpty()) {
+        PaginationResult<Product> productPaginationResult = this.findProductsServicePort.execute(productFilters);
+        if (productPaginationResult.getItems().isEmpty()) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(products.stream().map(ProductRestMapper::domainToResponse).toList());
+        return ResponseEntity.ok(ProductRestMapper.domainToPaginationResponse(productPaginationResult));
     }
 }

@@ -20,16 +20,11 @@ spring:
       ddl-auto: none
     show-sql: false
     open-in-view: false
-  flyway:
-    enabled: true
-    url: ${FLYWAY_URL}
-    user: ${FLYWAY_USER}
-    password: ${FLYWAY_PASSWORD}
 springdoc:
   api-docs:
-    path: ${SPRINGDOC_PATH}
+    path: ${SPRINGDOC_PATH:/api/docs}
   swagger-ui:
-    path: ${SPRINGDOC_SWAGGER_PATH}
+    path: ${SPRINGDOC_SWAGGER_PATH:/api/swagger/}
     operations-sorter: method
 logging:
   level:

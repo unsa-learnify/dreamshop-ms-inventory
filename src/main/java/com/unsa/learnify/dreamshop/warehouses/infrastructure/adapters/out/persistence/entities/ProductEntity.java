@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,6 +27,7 @@ import java.util.Set;
 
 @Data
 @Builder
+@EqualsAndHashCode(exclude = "categories")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "products")
@@ -36,6 +38,7 @@ public class ProductEntity {
     private Integer id;
     private String name;
     private String description;
+    private String code;
     private BigDecimal unitPrice;
     private Currency currency;
     private Integer quantity;

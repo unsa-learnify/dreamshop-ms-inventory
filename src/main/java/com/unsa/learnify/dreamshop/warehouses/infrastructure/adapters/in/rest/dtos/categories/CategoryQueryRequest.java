@@ -40,4 +40,14 @@ public class CategoryQueryRequest {
         message = "Name must contain only letters, numbers, and spaces"
     )
     private String name;
+    @Schema(
+        description = "Filter categories by description. Allows up to 100 characters with letters, numbers, and spaces only.",
+        example = "Gadgets and electronic devices"
+    )
+    @Size(max = 100, message = "Description must be at most 100 characters")
+    @Pattern(
+        regexp = "^[a-zA-Z0-9\\s]*$",
+        message = "Name must contain only letters, numbers, and spaces"
+    )
+    private String description;
 }

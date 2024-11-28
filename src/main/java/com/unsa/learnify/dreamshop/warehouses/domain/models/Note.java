@@ -5,23 +5,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
-    private Integer id;
-    private String name;
+public class Note {
+    private Long id;
+    private String title;
     private String description;
-    private String code;
-    private BigDecimal unitPrice;
-    private Currency currency;
-    private Integer quantity;
+    private Movement movement;
+    private Integer amount;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Set<Category> categories;
+    private Product product;
 }

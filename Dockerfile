@@ -9,4 +9,4 @@ EXPOSE 8080
 LABEL name="Warehouses"
 LABEL authors="Angel Hincho"
 LABEL maintainer="ahincho"
-CMD ["java", "-jar", "app.jar", "--spring.profiles.active=${SPRING_PROFILE}"]
+CMD ["java", "-jar", "warehouses.jar", "--spring.profiles.active=${SPRING_PROFILE}"]

@@ -5,10 +5,7 @@ import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.ut
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import lombok.Data;
 
@@ -37,6 +34,19 @@ public class ProductQueryRequest {
     )
     @Size(max = 100, message = "Name must be at most 100 characters")
     private String name;
+    @Schema(
+        description = "Description filter to search for products. Maximum 100 characters.",
+        example = "A high-end smartphone with 128GB storage."
+    )
+    @Size(max = 100, message = "Description must be at most 100 characters")
+    private String description;
+
+    @Schema(
+        description = "Code filter to search for products, must follow the pattern 'xxx-xx-xxx-xxxx-x'.",
+        example = "123-45-678-9012-3"
+    )
+    @Size(max = 17, message = "Code must be at most 17 characters")
+    private String code;
     @Schema(
         description = "Minimum price for filtering products. Must be at least 0.01.",
         example = "100.00"
