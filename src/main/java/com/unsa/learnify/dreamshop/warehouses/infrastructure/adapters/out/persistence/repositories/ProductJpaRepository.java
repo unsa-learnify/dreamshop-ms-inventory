@@ -12,6 +12,10 @@ import java.util.Optional;
 
 @Repository
 public interface ProductJpaRepository extends JpaRepository<ProductEntity, Integer>, JpaSpecificationExecutor<ProductEntity> {
-    @Query("select p from product p where lower(p.name) = lower(:name)")
-    Optional<ProductEntity> findByName(@Param("name") String name);
+    @Query("select p from product p left join fetch p.categories where p.id = :id")
+    Optional<ProductEntity> findByIdWithCategories(@Param("id") Integer id);
+    Optional<ProductEntity> findByNameIgnoreCase(String name);
+    Optional<ProductEntity> findByCode(String code);
+    Boolean existsByNameIgnoreCase(String name);
+    Boolean existsByCode(String code);
 }

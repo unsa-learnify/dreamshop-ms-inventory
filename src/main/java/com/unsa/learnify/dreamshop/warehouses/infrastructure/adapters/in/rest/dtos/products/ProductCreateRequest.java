@@ -4,10 +4,7 @@ import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.ut
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
 
@@ -26,6 +23,13 @@ public record ProductCreateRequest(
     )
     @NotBlank
     String description,
+    @Schema(
+        description = "Unique identifier for the product. Must follow the pattern 'xxx-xx-xxx-xxxx-x', where 'x' is a digit.",
+        example = "123-45-678-9012-3"
+    )
+    @NotBlank
+    @Pattern(regexp = "^[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{4}-[0-9]{1}$", message = "Code must follow the pattern xxx-xx-xxx-xxxx-x")
+    String code,
     @Schema(
         description = "Price of the product. Must be a positive value greater than zero.",
         example = "799.99"

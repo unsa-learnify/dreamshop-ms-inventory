@@ -2,9 +2,8 @@ package com.unsa.learnify.dreamshop.warehouses.application.ports.in.categories;
 
 import com.unsa.learnify.dreamshop.warehouses.domain.models.Category;
 import com.unsa.learnify.dreamshop.warehouses.domain.models.CategoryFilters;
-
-import java.util.List;
+import com.unsa.learnify.dreamshop.warehouses.domain.models.PaginationResult;
 
 public interface FindCategoriesServicePort {
-    List<Category> execute(CategoryFilters categoryFilters);
+    PaginationResult<Category> execute(CategoryFilters categoryFilters);
 }

@@ -49,7 +49,9 @@ public class CreateOneProductRestController {
         )
     })
     @PostMapping
-    public ResponseEntity<ProductResponse> createOneCategory(@RequestBody @Valid ProductCreateRequest productCreateRequest) throws ProductDuplicatedException, CurrencyNotFoundException {
+    public ResponseEntity<ProductResponse> createOneCategory(
+        @RequestBody @Valid ProductCreateRequest productCreateRequest
+    ) throws ProductDuplicatedException, CurrencyNotFoundException {
         Product product = ProductRestMapper.createRequestToDomain(productCreateRequest);
         Product savedCategory = this.createOneProductServicePort.execute(product);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{productId}").buildAndExpand(product.getId()).toUri();

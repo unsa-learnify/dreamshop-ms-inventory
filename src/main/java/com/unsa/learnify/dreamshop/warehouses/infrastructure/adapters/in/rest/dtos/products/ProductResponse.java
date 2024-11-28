@@ -1,5 +1,6 @@
 package com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.products;
 
+import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.dtos.categories.CategoryResponse;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Builder
@@ -32,6 +34,11 @@ public class ProductResponse {
     )
     private String description;
     @Schema(
+        description = "Unique code of the product, which must follow the pattern xxx-xx-xxx-xxxx-x.",
+        example = "123-45-678-9012-3"
+    )
+    private String code;
+    @Schema(
         description = "Unit price of the product.",
         example = "850.00"
     )
@@ -46,6 +53,7 @@ public class ProductResponse {
         example = "10"
     )
     private Integer quantity;
+    private Set<CategoryResponse> categories;
     @Schema(
         description = "Timestamp when the product was created.",
         example = "2024-01-01T12:00:00"
