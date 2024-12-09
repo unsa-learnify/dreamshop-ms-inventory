@@ -5,6 +5,7 @@ import com.unsa.learnify.dreamshop.warehouses.infrastructure.adapters.in.rest.ut
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
@@ -33,5 +34,7 @@ public record ProductUpdateRequest(
         example = "EUR"
     )
     @ValidCurrency
-    String currency
+    String currency,
+    @Min(value = 0, message = "The quantity must be equals or greater than zero.")
+    Integer quantity
 ) {}

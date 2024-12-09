@@ -182,13 +182,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/6/categories",
+									"raw": "{{warehousesServer}}/{{products}}/2/categories",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"6",
+										"2",
 										"categories"
 									]
 								}
@@ -213,17 +213,18 @@
 							"response": []
 						},
 						{
-							"name": "Find Products Copy",
+							"name": "Find Product By Id",
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}",
+									"raw": "{{warehousesServer}}/{{products}}/1",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
-										"{{products}}"
+										"{{products}}",
+										"1"
 									]
 								}
 							},
@@ -254,7 +255,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"code\": \"123-78-901-2345-6\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Wireless Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life.\",\r\n    \"code\": \"123-78-901-2345-6\",\r\n    \"unitPrice\": 120.00,\r\n    \"currency\": \"EUR\",\r\n    \"quantity\": 50\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -262,13 +263,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{warehousesServer}}/{{products}}/6",
+									"raw": "{{warehousesServer}}/{{products}}/2",
 									"host": [
 										"{{warehousesServer}}"
 									],
 									"path": [
 										"{{products}}",
-										"6"
+										"2"
 									]
 								}
 							},
@@ -287,6 +288,34 @@
 									"path": [
 										"{{products}}",
 										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Categories To Product By Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryIds\": [\r\n        1,\r\n        3\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{warehousesServer}}/{{products}}/2/categories",
+									"host": [
+										"{{warehousesServer}}"
+									],
+									"path": [
+										"{{products}}",
+										"2",
+										"categories"
 									]
 								}
 							},
@@ -796,6 +825,34 @@
 									"path": [
 										"products",
 										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Categories To Product By Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"categoryIds\": [\r\n        1,\r\n        3\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{apiGateway}}/products/2/categories",
+									"host": [
+										"{{apiGateway}}"
+									],
+									"path": [
+										"products",
+										"2",
+										"categories"
 									]
 								}
 							},

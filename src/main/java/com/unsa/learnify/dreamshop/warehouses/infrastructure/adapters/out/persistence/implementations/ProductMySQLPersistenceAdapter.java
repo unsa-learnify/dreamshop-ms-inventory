@@ -130,4 +130,18 @@ public class ProductMySQLPersistenceAdapter implements ProductPersistencePort {
     public void deleteOneProductById(Integer productId) {
         this.productJpaRepository.deleteById(productId);
     }
+    @Override
+    @Transactional
+    public void deleteCategoriesToProductById(Integer productId, List<Integer> categoryIds) throws ProductNotFoundException {
+        Optional<ProductEntity> optionalProductEntity = this.productJpaRepository.findById(productId);
+        if (optionalProductEntity.isEmpty()) {
+            throw new ProductNotFoundException("Product with id " + productId + " not found");
+        }
+        ProductEntity productEntity = optionalProductEntity.get();
+        List<CategoryEntity> categoryEntitiesToRemove = productEntity.getCategories().stream()
+            .filter(categoryEntity -> categoryIds.contains(categoryEntity.getId()))
+            .toList();
+        categoryEntitiesToRemove.forEach(productEntity.getCategories()::remove);
+        this.productJpaRepository.save(productEntity);
+    }
 }

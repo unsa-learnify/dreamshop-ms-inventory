@@ -20,11 +20,6 @@ spring:
       ddl-auto: none
     show-sql: ${JPA_SHOW_SQL:true}
     open-in-view: false
-  flyway:
-    enabled: true
-    url: ${FLYWAY_URL:jdbc:mysql://localhost:3306/warehouses}
-    user: ${FLYWAY_USER:root}
-    password: ${FLYWAY_PASSWORD:ahincho}
 springdoc:
   api-docs:
     path: ${SPRINGDOC_PATH:/api/docs}

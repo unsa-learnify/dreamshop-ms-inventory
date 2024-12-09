@@ -20,4 +20,5 @@ public interface ProductPersistencePort {
     Boolean existsOneProductByCode(String productCode);
     void updateOneProductById(Integer productId, Product product);
     void deleteOneProductById(Integer productId);
+    void deleteCategoriesToProductById(Integer productId, List<Integer> categoryIds) throws ProductNotFoundException;
 }

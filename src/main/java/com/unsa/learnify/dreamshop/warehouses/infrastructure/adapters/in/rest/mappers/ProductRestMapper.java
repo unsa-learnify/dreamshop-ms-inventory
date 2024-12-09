@@ -47,6 +47,7 @@ public class ProductRestMapper {
             .description(productUpdateRequest.description())
             .unitPrice(productUpdateRequest.unitPrice())
             .currency(parseCurrency(productUpdateRequest.currency()))
+            .quantity(productUpdateRequest.quantity())
             .build();
     }
     public static PaginationResultResponse<ProductResponse> domainToPaginationResponse(PaginationResult<Product> productPage) {
